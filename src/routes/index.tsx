@@ -5,6 +5,7 @@ import {
   MessageCircle, Phone, Puzzle, Target, X, Globe, ExternalLink, ImageIcon, User, ArrowRight, Send,
 } from "lucide-react";
 import { profile, projects, type Project } from "@/data/portfolio";
+import { ContactForm } from "@/components/contact-form";
 
 const TITLE = "Zamzam Abdikadir Farah — Software Developer";
 const DESC =
@@ -359,6 +360,7 @@ function Contact() {
             </Reveal>
           ))}
         </div>
+        <ContactForm />
         <div className="mt-10 flex flex-col items-start gap-6 rounded-2xl border border-border bg-card p-6 md:flex-row md:items-center md:justify-between">
           <div className="flex gap-4">
             <Mail className="mt-1 shrink-0 text-primary-glow" />
