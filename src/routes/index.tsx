@@ -363,7 +363,7 @@ function Contact() {
           <div className="flex gap-4">
             <Mail className="mt-1 shrink-0 text-primary-glow" />
             <div><p className="font-display text-lg font-semibold">Let's Work Together!</p>
-              <p className="text-sm text-muted-foreground">Open to collaborations, internships and project opportunities.</p></div>
+              <p className="text-sm text-muted-foreground">Have an idea or opportunity? I would love to hear about it.</p></div>
           </div>
           <div className="flex flex-wrap gap-3">
             <a href={`mailto:${profile.email}`} className={`${btnPrimary} !rounded-xl`}>Get in Touch <Send size={16} /></a>
