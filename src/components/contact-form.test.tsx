@@ -32,7 +32,7 @@ describe("Contact email", () => {
     fireEvent.submit(screen.getByLabelText("Full Name").closest("form") as HTMLFormElement);
     expect(emailjs.send).toHaveBeenCalledTimes(1);
     expect(emailjs.init).toHaveBeenCalledWith({ publicKey: "ngEQ5-d2RZ__zZ0zB" });
-    expect(emailjs.send).toHaveBeenCalledWith("service_t82f4dt", "template_fda37ab", {
+    expect(emailjs.send).toHaveBeenCalledWith("service_t82f4dt", "template_hkpuk18", {
       from_name: "Test Visitor", from_email: "visitor@example.com", reply_to: "visitor@example.com",
       subject: "Portfolio inquiry", message: "Hello Zamzam", to_email: "samsamcabdi25@gmail.com", to_name: "Zamzam Abdikadir Farah",
     });
@@ -50,5 +50,13 @@ describe("Contact email", () => {
     expect(screen.queryByRole("status")).toBeNull();
     expect(screen.getByLabelText("Message")).toHaveValue("Hello Zamzam");
     expect(screen.getByRole("button")).toBeEnabled();
+  });
+  it("does not accept a non-200 SDK response as success", async () => {
+    vi.mocked(emailjs.send).mockResolvedValue({ status: 202, text: "Pending" });
+    render(<ContactForm />); fill();
+    fireEvent.click(screen.getByRole("button", { name: "Send Message" }));
+    await waitFor(() => expect(screen.getByRole("alert")).toBeInTheDocument());
+    expect(screen.queryByRole("status")).toBeNull();
+    expect(screen.getByLabelText("Message")).toHaveValue("Hello Zamzam");
   });
 });
