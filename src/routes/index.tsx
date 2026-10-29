@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   ArrowUp, Brain, Code2, Download, Github, GraduationCap, Layers, Linkedin, Mail, Menu,
-  MessageCircle, Phone, Puzzle, Target, X, Globe, ExternalLink, ImageIcon, User,
+  MessageCircle, Phone, Puzzle, Target, X, Globe, ExternalLink, ImageIcon, User, ArrowRight, Send,
 } from "lucide-react";
 import { profile, projects, type Project } from "@/data/portfolio";
 
@@ -100,53 +100,81 @@ function Nav() {
 }
 
 function Hero() {
+  const socials = [
+    { icon: Github, l: "GitHub", h: profile.github },
+    { icon: Linkedin, l: "LinkedIn", h: profile.linkedin },
+    { icon: MessageCircle, l: "WhatsApp", h: `https://wa.me/${profile.whatsapp}` },
+  ];
   return (
-    <section id="home" className="relative overflow-hidden pt-28 pb-20 sm:pt-36">
-      <div aria-hidden className="grid-bg absolute inset-0" />
-      <div aria-hidden className="animate-drift absolute -top-20 -left-20 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
-      <div aria-hidden className="animate-drift absolute top-40 right-0 h-80 w-80 rounded-full bg-primary-glow/10 blur-3xl [animation-delay:-7s]" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 md:grid-cols-[1.3fr_1fr]">
+    <section id="home" className="relative overflow-hidden pt-28 pb-12 sm:pt-32">
+      <div aria-hidden className="animate-drift absolute -top-20 -left-20 h-96 w-96 rounded-full bg-primary/15 blur-3xl" />
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 md:grid-cols-2">
         <Reveal>
-          <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 font-mono text-xs text-primary-glow">
-            <Code2 size={14} /> CS Student · Nugaal University
-          </p>
-          <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-6xl">
-            Hello, I'm <span className="text-gradient">Zamzam</span>
+          <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-4 py-1.5 text-sm">👋 Hello, I'm</p>
+          <h1 className="mt-5 text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl">
+            Zamzam <span className="text-gradient">Abdikadir</span>
           </h1>
           <p className="mt-4 text-xl font-semibold sm:text-2xl">Software Developer & Computer Science Student</p>
-          <p className="mt-4 max-w-xl text-lg text-muted-foreground">
+          <p className="mt-4 max-w-md text-muted-foreground">
             Building meaningful digital experiences through software development, problem-solving, and technology.
-          </p>
-          <p className="mt-3 max-w-xl text-muted-foreground">
-            I study Computer Science at Nugaal University, with a strong interest in Software Engineering and Artificial Intelligence.
+            I study Computer Science at Nugaal University, with a strong interest in Software Engineering and AI.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#projects" className={btnPrimary}>View My Projects</a>
-            <a href="#contact" className={btnGhost}>Contact Me</a>
+            <a href="#projects" className={`${btnPrimary} !rounded-xl`}>View My Projects <ArrowRight size={16} /></a>
+            <a href="#contact" className={`${btnGhost} !rounded-xl`}>Contact Me</a>
             {profile.cv ? (
-              <a href={profile.cv} download className={btnGhost}><Download size={16} /> Download CV</a>
+              <a href={profile.cv} download className={`${btnGhost} !rounded-xl`}><Download size={16} /> Download CV</a>
             ) : (
-              <button disabled title="CV coming soon" className={`${btnGhost} cursor-not-allowed opacity-50`}><Download size={16} /> CV coming soon</button>
+              <button disabled title="CV coming soon" className={`${btnGhost} !rounded-xl cursor-not-allowed opacity-50`}><Download size={16} /> CV soon</button>
             )}
           </div>
+          <div className="mt-8 flex items-center gap-4 text-sm text-muted-foreground">
+            Follow me on
+            {socials.map(({ icon: I, l, h }) => (
+              <a key={l} href={h} {...ext} aria-label={l} className="text-foreground transition-colors hover:text-primary-glow"><I size={20} /></a>
+            ))}
+          </div>
         </Reveal>
-        <Reveal className="mx-auto">
-          <div className="animate-float relative">
-            <div aria-hidden className="absolute -inset-3 rounded-[2.5rem] bg-gradient-primary opacity-40 blur-2xl" />
-            <div className="relative grid h-64 w-64 place-items-center overflow-hidden rounded-[2rem] border border-primary/40 bg-card sm:h-80 sm:w-80">
+        <Reveal className="relative mx-auto w-full max-w-md">
+          <div aria-hidden className="grid-dots absolute top-0 left-4 h-28 w-28" />
+          <div className="relative mx-auto aspect-square w-[85%]">
+            <div aria-hidden className="absolute inset-0 rounded-full bg-gradient-primary opacity-90 shadow-glow" />
+            <div className="animate-float absolute inset-3 grid place-items-center overflow-hidden rounded-full border-4 border-background bg-card">
               {profile.photo ? (
                 <img src={profile.photo} alt={profile.name} className="h-full w-full object-cover" />
               ) : (
-                <div className="flex flex-col items-center gap-3 text-muted-foreground">
-                  <User size={72} strokeWidth={1.2} className="text-primary-glow" />
+                <div className="flex flex-col items-center gap-2 text-muted-foreground">
+                  <User size={80} strokeWidth={1.2} className="text-primary-glow" />
                   <span className="text-xs">Profile photo coming soon</span>
                 </div>
               )}
             </div>
-            <span className="absolute -bottom-4 -left-4 rounded-xl border border-border bg-secondary px-3 py-2 font-mono text-xs text-primary-glow">{"<developer />"}</span>
+          </div>
+          <div className="absolute top-1/3 -left-2 rounded-2xl border border-border bg-card/90 px-4 py-3 backdrop-blur sm:-left-6">
+            <p className="font-display text-xl font-bold text-primary-glow">2027</p>
+            <p className="text-xs text-muted-foreground">Expected<br />Graduation</p>
+          </div>
+          <div className="absolute right-0 bottom-6 rounded-2xl border border-border bg-card/90 px-4 py-3 backdrop-blur">
+            <p className="font-display text-xl font-bold text-primary-glow">BSc CS</p>
+            <p className="text-xs text-muted-foreground">Nugaal<br />University</p>
           </div>
         </Reveal>
       </div>
+      <Reveal className="relative mx-auto mt-14 max-w-6xl px-4">
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border lg:grid-cols-4">
+          {[
+            { icon: Code2, t: "Software", d: "Development" },
+            { icon: Layers, t: "Software", d: "Engineering" },
+            { icon: Globe, t: "Web", d: "Applications" },
+            { icon: Brain, t: "AI", d: "Future focus" },
+          ].map(({ icon: I, t, d }) => (
+            <div key={d} className="flex items-center gap-4 bg-card px-5 py-5">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/15 text-primary-glow"><I size={20} /></span>
+              <span><span className="block font-display text-lg font-bold">{t}</span><span className="text-sm text-muted-foreground">{d}</span></span>
+            </div>
+          ))}
+        </div>
+      </Reveal>
     </section>
   );
 }
@@ -331,9 +359,16 @@ function Contact() {
             </Reveal>
           ))}
         </div>
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <a href={`mailto:${profile.email}`} className={btnPrimary}><Mail size={16} /> Send an Email</a>
-          <a href={`https://wa.me/${profile.whatsapp}`} {...ext} className={btnGhost}><MessageCircle size={16} /> Chat on WhatsApp</a>
+        <div className="mt-10 flex flex-col items-start gap-6 rounded-2xl border border-border bg-card p-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex gap-4">
+            <Mail className="mt-1 shrink-0 text-primary-glow" />
+            <div><p className="font-display text-lg font-semibold">Let's Work Together!</p>
+              <p className="text-sm text-muted-foreground">Open to collaborations, internships and project opportunities.</p></div>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a href={`mailto:${profile.email}`} className={`${btnPrimary} !rounded-xl`}>Get in Touch <Send size={16} /></a>
+            <a href={`https://wa.me/${profile.whatsapp}`} {...ext} className={`${btnGhost} !rounded-xl`}><MessageCircle size={16} /> WhatsApp</a>
+          </div>
         </div>
       </div>
     </section>

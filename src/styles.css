@@ -109,6 +109,11 @@
   mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
 }
 
+@utility grid-dots {
+  background-image: radial-gradient(var(--muted-foreground) 1.5px, transparent 1.5px);
+  background-size: 16px 16px; opacity: .35;
+}
+
 @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
 @keyframes drift { 0%,100% { transform: translate(0,0) scale(1) } 50% { transform: translate(40px,-30px) scale(1.1) } }
 .animate-float { animation: float 6s ease-in-out infinite; }
