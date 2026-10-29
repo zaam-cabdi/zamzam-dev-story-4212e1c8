@@ -38,5 +38,8 @@ After fixing settings, submit a fresh message on the preview, check EmailJS hist
 
 Automated tests mock EmailJS solely to check validation, failure handling, and duplicate-submission behavior; they do not prove delivery. Real test results are recorded separately after an actual request.
 
-### Actual test — October 29, 2026
+### Previous actual test — October 29, 2026
 The live form made a real request with the supplied settings. EmailJS returned HTTP 400: “The service ID not found.” The form displayed an error, retained the message, and did not display success. Sending is not functional until the owner verifies `service_t82f4dt` belongs to the account identified by the supplied Public Key (or supplies the correct Service ID), reconnects the service as needed, and reruns a test. Inbox delivery remains unverified.
+
+### Updated template test — October 29, 2026
+Retested the live contact form with `template_hkpuk18`, `service_t82f4dt`, and the supplied Public Key. EmailJS again returned HTTP 400: “The service ID not found.” The form correctly displayed the error, retained all inputs, and enabled another attempt. Desktop and 390px-wide mobile form views were checked; the mobile page had no horizontal overflow. All five automated tests passed, including validation, exact SDK parameters, duplicate prevention, failure retention, and rejection of non-200 responses. No successful sending or inbox delivery is claimed. The template's actual dashboard recipient and variable settings cannot be verified from this project's source; the owner must check the dashboard configuration above.
