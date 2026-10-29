@@ -101,11 +101,8 @@
 }
 @utility bg-gradient-primary { background: var(--gradient-primary); }
 @utility shadow-glow { box-shadow: var(--shadow-glow); }
-@utility reveal {
-  opacity: 0; transform: translateY(24px);
-  transition: opacity .7s ease, transform .7s ease;
-  &.is-visible { opacity: 1; transform: none; }
-}
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
 @utility grid-bg {
   background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 48px 48px;
