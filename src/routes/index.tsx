@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   ArrowUp, Brain, Code2, Download, Github, GraduationCap, Layers, Linkedin, Mail, Menu,
-  MessageCircle, Phone, Puzzle, Target, Wrench, X, Globe, ExternalLink, ImageIcon, User,
+  MessageCircle, Phone, Puzzle, Target, X, Globe, ExternalLink, ImageIcon, User,
 } from "lucide-react";
 import { profile, projects, type Project } from "@/data/portfolio";
 
@@ -375,5 +375,3 @@ function Index() {
   );
 }
 
-// Wrench kept for future "tools" section icons
-void Wrench;
