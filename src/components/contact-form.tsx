@@ -26,7 +26,10 @@ export function ContactForm() {
     setStatus("idle");
     if (!parsed.success) {
       const nextErrors: Partial<Record<keyof ContactValues, string>> = {};
-      for (const field of fields) nextErrors[field.name] = parsed.error.flatten().fieldErrors[field.name]?.[0];
+      for (const field of fields) {
+        const error = parsed.error.flatten().fieldErrors[field.name]?.[0];
+        if (error) nextErrors[field.name] = error;
+      }
       setErrors(nextErrors);
       const first = fields.find((field) => nextErrors[field.name]);
       if (first) form.querySelector<HTMLElement>(`[name="${first.name}"]`)?.focus();

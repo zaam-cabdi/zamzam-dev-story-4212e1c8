@@ -9,9 +9,9 @@ export const contactSchema = z.object({
 });
 export type ContactValues = z.infer<typeof contactSchema>;
 export const emailConfig = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+  serviceId: import.meta.env['VITE_EMAILJS_SERVICE_ID'],
+  templateId: import.meta.env['VITE_EMAILJS_TEMPLATE_ID'],
+  publicKey: import.meta.env['VITE_EMAILJS_PUBLIC_KEY'],
 };
 
 export async function sendContactEmail(input: ContactValues) {

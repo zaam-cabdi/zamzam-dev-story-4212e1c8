@@ -19,3 +19,6 @@ These values are public identifiers, not private credentials. Never add a privat
 Submit all four fields through the live form. Success appears only for an actual EmailJS status 200 response; it confirms service acceptance, not inbox delivery. Check the EmailJS history and recipient inbox/spam folder to verify delivery. On failure the form retains input and offers direct email.
 
 Automated tests mock EmailJS solely to check validation, failure handling, and duplicate-submission behavior; they do not prove delivery. Real test results are recorded separately after an actual request.
+
+### Actual test — October 29, 2026
+The live form made a real request with the supplied settings. EmailJS returned HTTP 400: “The service ID not found.” The form displayed an error, retained the message, and did not display success. Sending is not functional until the owner verifies `service_t82f4dt` belongs to the account identified by the supplied Public Key (or supplies the correct Service ID), reconnects the service as needed, and reruns a test. Inbox delivery remains unverified.
